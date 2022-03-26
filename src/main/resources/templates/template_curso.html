@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Convênio</title>
+    <bookmarks>
+        <bookmark name="Curso" href="#curso"></bookmark>
+    </bookmarks>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+</head>
+
+<body>
+<header>
+    <div style="text-align: center;">
+        <img class="logo" src="images/unicamp_logo.png"/>
+    </div>
+</header>
+
+
+<h5 style="text-align:right">Limeira, <span th:text="${dia}"></span> de <span th:text="${mes}"></span> de <span
+        th:text="${ano}"></span></h5>
+
+<p>Ilma. Profa. Dra. <span th:text="${coordenador}"></span> <br/>
+    Coordenadora de Extensão da FT/UNICAMP</p>
+
+<h4 style="text-align: center">SOLICITAÇÃO DE AUTORIZAÇÃO PARA EXERCÍCIO DE ATIVIDADES SIMULTÂNEAS <br/>
+    (Cursos de Extensão)</h4>
+
+<p align="justify">
+    Eu, <span th:text="${curso.docente.nome}"></span>, Prof Dr. <span th:text="${titulo}"></span> em RDIDP nesta faculdade,
+    matrícula nº <span th:text="${curso.docente.matricula}"></span>, venho através desta, em atendimento a
+    Deliberação CONSU-A-02-2001 (Artigos 8º, 9º e 12º), solicitar autorização para realização de atividades simultâneas,
+    descritas a
+    seguir:
+</p>
+
+<h4>Tipo de Atividade simultânea: Convênios</h4>
+
+<p>Nome do curso: <span th:text="${curso.projeto}"></span></p>
+<p>Prof. Coordenador: <span th:text="${curso.coordenador}"></span></p>
+<p>Instituição vinculada: <span th:text="${curso.instituicaoVinculada}"></span></p>
+<p>Participação por: <span th:text="${curso.participacao}"></span></p>
+<p>Disciplinas de participação: <span th:text="${curso.disciplinaParticipacao} ?: '-'"></span></p>
+<p>Carga horária total das aulas a serem ministradas: <span th:text="${curso.totalHorasMinistradas?:'0'}"></span> horas</p>
+<p>
+    Carga horária total de outras atividades (coordenação e/ou preparação): <span
+        th:text="${curso.totalHorasOutrasAtividades?:'0'}"></span> horas
+</p>
+<p>Valor bruto recebido por hora: R$ <span th:text="${curso.valorBrutoHora?:'0'}"></span></p>
+<p>Valor bruto total: R$ <span th:text="${curso.valorBrutoTotal} ?: '0'"></span></p>
+<p>Período de participação: <span th:text="${curso.prazo} ?: '0'"></span> meses</p>
+<p>
+    Declaro que:
+</p>
+
+<ul>
+    <li th:if="${ not#lists.isEmpty(alocacoes)}">
+        <p>
+            Estou ciente da Deliberação CONSU-A-02/2001, e já comprometido com as atividades de extensão abaixo:
+        </p>
+        <table style="width: 100%; border: 1px solid black; ">
+            <tr>
+                <th>Atividade</th>
+                <th>Tipo</th>
+                <th>Semestre</th>
+                <th>Ano</th>
+                <th>Horas Aprovadas</th>
+            </tr>
+            <tr th:each="alocacao : ${alocacoes}">
+                <td th:text="${alocacao.atividade.projeto}"></td>
+                <td th:text="${alocacao.atividade.tipo}"></td>
+                <td th:text="${alocacao.semestre}"></td>
+                <td th:text="${alocacao.ano}"></td>
+                <td th:text="${alocacao.totalHorasAprovadas}"></td>
+            </tr>
+        </table>
+    </li>
+    <li>
+        <p>
+            Quaisquer taxas que devão ser recolhidas para a Faculdade de Tecnologia e Unicamp, assim como descontos
+            legais e encargos sociais, serão realizados pela Funcamp;
+        </p>
+    </li>
+    <li>
+        <p>
+            Estou ciente de que para que a atividade aqui descrita tenha continuidade além do prazo especificado acima,
+            deverei solicitar uma nova autorização para exercê-la.
+        </p>
+    </li>
+</ul>
+
+<p>
+    Atenciosamente, <br/>
+    Prof Dr <span th:text="${curso.docente.nome}"></span>
+</p>
+
+</body>
+</html>
