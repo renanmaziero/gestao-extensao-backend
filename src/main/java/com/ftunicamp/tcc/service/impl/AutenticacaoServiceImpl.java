@@ -103,6 +103,8 @@ public class AutenticacaoServiceImpl implements AutenticacaoService {
         if (userRepository.existsByUsername(signUpRequest.getUsername()).equals(true)) {
             throw new NegocioException("Usuário já está em uso.");
             //return "Usuário existente";
+
+
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail()).equals(true)) {
