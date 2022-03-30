@@ -100,27 +100,23 @@ public class AutenticacaoServiceImpl implements AutenticacaoService {
 
     @Override
     public String registrarUsuario(SignUpRequest signUpRequest, HttpServletRequest request) {
+
         if (userRepository.existsByUsername(signUpRequest.getUsername()).equals(true)) {
             throw new NegocioException("Usuário já está em uso.");
-            //return "Usuário existente";
-
-
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail()).equals(true)) {
-
             throw new NegocioException("Email já está em uso.");
-
-            //return "Email já está em uso.";
         }
 
-//        if(userRepository.existsByMatricula(signUpRequest.getRf()).equals(true)){
-//            throw new NegocioException("Matrícula já está em uso.");
-//        }
-//
-//        if(userRepository.existsByCPF(signUpRequest.getCpf()).equals(true)){
-//            throw new NegocioException("CPF já está em uso.");
-//        }
+        if(docenteRepository.findByCpf(signUpRequest.getCpf().replace(".","").replace("-","")) != null){
+            throw new NegocioException("CPF já está em uso.");
+
+        }
+
+        if(docenteRepository.findByMatricula(signUpRequest.getRf()) != null){
+            throw new NegocioException("Matrícula já está em uso.");
+        }
 
         var user = new UsuarioEntity(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),

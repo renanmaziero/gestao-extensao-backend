@@ -15,4 +15,6 @@ public interface DocenteRepository extends JpaRepository<Docente, Long> {
 
     Docente findByMatricula(String matricula);
 
+    Docente findByCpf(String cpf);
+
 }
