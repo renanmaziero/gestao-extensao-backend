@@ -88,7 +88,7 @@ public class AutenticacaoServiceImpl implements AutenticacaoService {
                 .collect(Collectors.toList());
 
         if (!docente.getUser().isVerificado()) {
-            throw new NegocioException("Usuário não verificado.");
+            throw new NegocioException("Usuário não verificado. Olhou no lixo/spam?");
         }
 
         return new JwtResponse(jwt,

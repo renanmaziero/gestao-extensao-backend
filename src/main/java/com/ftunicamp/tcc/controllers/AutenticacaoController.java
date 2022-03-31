@@ -44,6 +44,6 @@ public class AutenticacaoController {
         if (verificado) {
             return ResponseEntity.ok("Conta confirmada com sucesso!");
         }
-        return ResponseEntity.badRequest().body("Erro ao verificar conta");
+        return ResponseEntity.badRequest().body("Conta já verificada.");
     }
 }
