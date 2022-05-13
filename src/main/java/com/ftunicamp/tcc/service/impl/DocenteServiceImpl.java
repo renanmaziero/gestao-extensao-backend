@@ -51,6 +51,8 @@ public class DocenteServiceImpl implements DocenteService, UsuarioService {
             docenteResponse.setMatricula(docente.getMatricula());
             docenteResponse.setEmail(docente.getEmail());
             docenteResponse.setAutorizado(docente.isAutorizado());
+            docenteResponse.setTelefone(docente.getTelefone());
+            docenteResponse.setAdmin(docente.ehAdmin());
             docenteResponse.setTotalHorasAprovadas(docente.getAlocacao()
                     .stream()
                     .filter(alocacao -> alocacao.getAno() == getAnoAtual())
@@ -149,10 +151,10 @@ public class DocenteServiceImpl implements DocenteService, UsuarioService {
         var response = new UsuarioDto();
         response.setNome(docente.getNome());
         response.setEmail(docente.getEmail());
+        response.setTelefone(docente.getTelefone());
         response.setEndereco(docente.getEndereco());
         response.setMatricula(docente.getMatricula());
         response.setTitulo(docente.getTitulo().getValue());
-        response.setTelefone(docente.getTelefone());
 
         return response;
     }

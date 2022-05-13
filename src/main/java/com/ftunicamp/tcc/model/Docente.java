@@ -1,6 +1,7 @@
 package com.ftunicamp.tcc.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -38,7 +39,15 @@ public class Docente {
 
     private String telefone;
 
+    private String admin;
+
     private boolean autorizado;
+
+    public String ehAdmin(){
+
+        admin = "oi";
+        return admin;
+    }
 
     @Enumerated(EnumType.STRING)
     private Titulo titulo;
