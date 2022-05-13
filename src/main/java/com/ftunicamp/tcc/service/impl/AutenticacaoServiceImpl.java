@@ -71,7 +71,7 @@ public class AutenticacaoServiceImpl implements AutenticacaoService {
                     throw new NegocioException("Usuário sem permissão de administrador.");
                 }
             } else {
-                throw new NegocioException("Matricula inválida.");
+                throw new NegocioException("Matrícula inválida.");
             }
         }
 
@@ -88,7 +88,7 @@ public class AutenticacaoServiceImpl implements AutenticacaoService {
                 .collect(Collectors.toList());
 
         if (!docente.getUser().isVerificado()) {
-            throw new NegocioException("Usuário não verificado. Olhou no lixo/spam?");
+            throw new NegocioException("Usuário não confirmado. Verifique sua caixa de entrada e spam.");
         }
 
         return new JwtResponse(jwt,
