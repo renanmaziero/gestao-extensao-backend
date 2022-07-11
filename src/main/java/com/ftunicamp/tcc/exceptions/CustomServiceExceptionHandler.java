@@ -27,7 +27,7 @@ public class CustomServiceExceptionHandler extends ResponseEntityExceptionHandle
         var mensagemErro = ex.getMessage();
 
         if (ex instanceof BadCredentialsException) {
-            mensagemErro = "Senha inválida.";
+            mensagemErro = "Senha inválida....";
             status = HttpStatus.UNAUTHORIZED;
         } else if (ex instanceof MaxUploadSizeExceededException) {
             mensagemErro = "Tamanho de arquivo muito grande!";
