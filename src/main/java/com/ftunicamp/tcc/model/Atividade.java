@@ -48,7 +48,7 @@ public abstract class Atividade {
     private boolean urgente;
 
     @Enumerated(EnumType.STRING)
-    private StatusAtividade status;
+    private StatusAtividade status = StatusAtividade.PENDENTE;
 
     private String observacao;
 
