@@ -52,7 +52,7 @@ public class DocenteServiceImpl implements DocenteService, UsuarioService {
             docenteResponse.setEmail(docente.getEmail());
             docenteResponse.setAutorizado(docente.isAutorizado());
             docenteResponse.setTelefone(docente.getTelefone());
-            docenteResponse.setAdmin(docente.ehAdmin());
+            docenteResponse.setAdmin(docente.isAdmin());
             docenteResponse.setTotalHorasAprovadas(docente.getAlocacao()
                     .stream()
                     .filter(alocacao -> alocacao.getAno() == getAnoAtual())

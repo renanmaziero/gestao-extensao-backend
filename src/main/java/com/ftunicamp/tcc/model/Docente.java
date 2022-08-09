@@ -39,15 +39,9 @@ public class Docente {
 
     private String telefone;
 
-    private String admin;
+    private boolean admin;
 
     private boolean autorizado;
-
-    public String ehAdmin(){
-
-        admin = "oi";
-        return admin;
-    }
 
     @Enumerated(EnumType.STRING)
     private Titulo titulo;
