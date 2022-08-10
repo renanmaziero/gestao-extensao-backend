@@ -19,5 +19,6 @@ public class UsuarioDto {
     private String matricula;
     private String endereco;
     private String titulo;
+    private boolean admin;
 
 }

@@ -175,6 +175,7 @@ public class DocenteServiceImpl implements DocenteService, UsuarioService {
             docente.setTitulo(Titulo.fromString(request.getTitulo()));
         }
 
+        docente.setAdmin(request.isAdmin());
         docenteRepository.save(docente);
     }
 }
