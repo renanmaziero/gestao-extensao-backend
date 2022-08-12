@@ -6,6 +6,7 @@ import com.ftunicamp.tcc.dto.PasswordDto;
 import com.ftunicamp.tcc.dto.UsuarioDto;
 import com.ftunicamp.tcc.service.DocenteService;
 import com.ftunicamp.tcc.service.PasswordService;
+import com.ftunicamp.tcc.service.UserProfilesService;
 import com.ftunicamp.tcc.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,9 @@ public class DocenteController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private UserProfilesService userProfilesService;
 
     @GetMapping("/todos")
     public ResponseEntity<List<DocenteResponse>> listarDocentes() {
@@ -61,8 +65,15 @@ public class DocenteController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> alterarDadosUsuario(@PathVariable("id") long usuarioId,
                                                     @RequestBody UsuarioDto request) {
+        int profile;
         try {
             usuarioService.alterarDadosUsuario(usuarioId, request);
+            if (request.isAdmin()) {
+                profile = 1; //admin
+            } else {
+                profile = 2; //docente
+            }
+            userProfilesService.UpdateUserProfiles(usuarioId, profile);
         } catch (Exception e) {
             Logger.getAnonymousLogger().log(Level.WARNING, e.getMessage());
         }
