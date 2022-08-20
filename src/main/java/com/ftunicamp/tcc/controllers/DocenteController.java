@@ -65,15 +65,13 @@ public class DocenteController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> alterarDadosUsuario(@PathVariable("id") long usuarioId,
                                                     @RequestBody UsuarioDto request) {
-        int profile;
         try {
             usuarioService.alterarDadosUsuario(usuarioId, request);
             if (request.isAdmin()) {
-                profile = 1; //admin
+                userProfilesService.UpdateUserProfiles(usuarioId, 1);
             } else {
-                profile = 2; //docente
+                userProfilesService.UpdateUserProfiles(usuarioId, 2);
             }
-            userProfilesService.UpdateUserProfiles(usuarioId, profile);
         } catch (Exception e) {
             Logger.getAnonymousLogger().log(Level.WARNING, e.getMessage());
         }

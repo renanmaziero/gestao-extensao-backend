@@ -1,5 +1,6 @@
 package com.ftunicamp.tcc.controllers.response;
 
+import com.ftunicamp.tcc.model.Titulo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ public class DocenteResponse {
     private String matricula;
     private String nome;
     private String email;
+    private Titulo titulo;
     private Boolean autorizado;
     private String telefone;
     private boolean admin;
