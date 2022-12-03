@@ -73,7 +73,7 @@ public class EmailServiceImpl implements EmailService {
             body += "Sua solicitação de atividade #" + atividade.getId() + " foi submetida com sucesso e encaminhada para a Coordenadoria de Extensão.";
         } else if (tipoEmail.equals(TipoEmail.STATUS_ATIVIDADE)) {
             assunto = "Atualização de status da atividade";
-            body += "O status da sua atividade foi alterado para: " + atividade.getStatus().getStatus();
+            body += "O status da sua atividade foi alterado para: " + atividade.getStatus().getStatus() + ". \n";
         }
 
         try {
@@ -85,8 +85,8 @@ public class EmailServiceImpl implements EmailService {
                     .field(TEMPLATE, tipoEmail.equals(TipoEmail.NOVA_ATIVIDADE) ? "template_atividade": "atividade_update")
                     .field(TRACKING, "False")
                     .field("v:docente", docente.getNome())
-                    .field("v:body", body)
-                    .field("v:observacao", (observacao == null || observacao.isEmpty()) ? "-" : observacao)
+                    .field("v:body", body + "Acesse o link para acompanhamento: " + frontUrl + "autorizacoes")
+                    .field("v:observacao", (observacao == null || observacao.isEmpty()) ? "-" : "Observações: " + observacao)
                     .asJson();
             Logger.getAnonymousLogger().log(Level.INFO, "{0}", request.getBody().toPrettyString());
         } catch (UnirestException e) {
