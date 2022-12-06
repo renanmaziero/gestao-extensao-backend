@@ -1,13 +1,12 @@
 package com.ftunicamp.tcc.controllers;
 
 import com.ftunicamp.tcc.controllers.response.ParametrizacaoResponse;
+import com.ftunicamp.tcc.dto.CursoExtensaoDto;
+import com.ftunicamp.tcc.dto.ParametrizacaoDto;
 import com.ftunicamp.tcc.service.ParametrizacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +21,11 @@ public class ParametrizacaoController {
     @GetMapping("/all")
     public ResponseEntity<List<ParametrizacaoResponse>> getParametrizacao() {
         return ResponseEntity.ok(parametrizacaoService.listarParametrizacoes());
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Void> updateCursoExtensao(@RequestBody ParametrizacaoDto parametrizacaoDto) {
+        parametrizacaoService.updateParametrizacao(parametrizacaoDto);
+        return ResponseEntity.ok().build();
     }
 }

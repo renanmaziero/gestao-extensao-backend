@@ -1,14 +1,18 @@
 package com.ftunicamp.tcc.service.impl;
 
 import com.ftunicamp.tcc.controllers.response.ParametrizacaoResponse;
+import com.ftunicamp.tcc.dto.ParametrizacaoDto;
 import com.ftunicamp.tcc.model.Parametrizacao;
 import com.ftunicamp.tcc.repositories.ParametrizacaoRepository;
 import com.ftunicamp.tcc.security.jwt.JwtUtils;
 import com.ftunicamp.tcc.service.ParametrizacaoService;
+import com.ftunicamp.tcc.utils.AtividadeFactory;
+import com.ftunicamp.tcc.utils.ParametrizacaoFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class ParametrizacaoServiceImpl implements ParametrizacaoService {
@@ -35,6 +39,15 @@ public class ParametrizacaoServiceImpl implements ParametrizacaoService {
         }
 
         return parametrizacaoResponse;
+    }
+
+    @Override
+    public void updateParametrizacao(ParametrizacaoDto request) {
+        parametrizacaoRepository.findById(request.getId())
+                .ifPresentOrElse(parametrizacao -> parametrizacaoRepository.save(ParametrizacaoFactory.updateParametriazcao(request, parametrizacao)), () -> {
+                    throw new NoSuchElementException("Parametrização não encontrada");
+                });
+
     }
 
     private void mapToParametrizacaoResponse(List<ParametrizacaoResponse> parametrizacaoResponse, Parametrizacao parametrizacao) {
