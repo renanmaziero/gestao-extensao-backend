@@ -36,9 +36,11 @@ public class ParametrizacaoServiceImpl implements ParametrizacaoService {
             return parametrizacaoResponse;
         } else {
             //parametrizacaoRepository.findAllByDocente(sessao.getUsername()).forEach(parametrizacao -> mapToParametrizacaoResponse(parametrizacaoResponse, parametrizacao));
+            parametrizacaoRepository.findAll().forEach(parametrizacao -> mapToParametrizacaoResponse(parametrizacaoResponse, parametrizacao));
+            return parametrizacaoResponse; //esse retorno é para os docentes na tela de submeter atividade
         }
 
-        return parametrizacaoResponse;
+        //return parametrizacaoResponse;
     }
 
     @Override
