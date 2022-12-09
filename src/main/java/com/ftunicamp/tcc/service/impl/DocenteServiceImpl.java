@@ -156,6 +156,7 @@ public class DocenteServiceImpl implements DocenteService, UsuarioService {
         response.setEndereco(docente.getEndereco());
         response.setMatricula(docente.getMatricula());
         response.setTitulo(docente.getTitulo().getValue());
+        response.setAdmin(docente.isAdmin());
 
         return response;
     }
@@ -176,7 +177,12 @@ public class DocenteServiceImpl implements DocenteService, UsuarioService {
             docente.setTitulo(Titulo.fromString(request.getTitulo()));
         }
 
-        docente.setAdmin(request.isAdmin());
+        if(request.isAdmin()){
+            docente.setAdmin(true);
+        } else {
+            docente.setAdmin(false);
+        }
+
         docenteRepository.save(docente);
     }
 }
