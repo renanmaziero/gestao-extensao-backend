@@ -103,7 +103,12 @@ public class AtividadeFactory {
         regencia.setHoraMensal(request.getHoraMensal());
         regencia.setHoraSemanal(request.getHoraSemanal());
         regencia.setCurso(request.getCurso());
-        regencia.setUrgente(regencia.isUrgente());
+        if(request.isUrgente()){
+            regencia.setUrgente(true);
+        } else {
+            regencia.setUrgente(false);
+        }
+
         //Mapear request para entidade - mapper struct
         return regencia;
     }
