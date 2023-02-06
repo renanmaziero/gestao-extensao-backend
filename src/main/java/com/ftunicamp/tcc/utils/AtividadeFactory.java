@@ -34,6 +34,9 @@ public class AtividadeFactory {
     }
 
     public static Convenio updateConvenio(ConvenioDto request, Convenio convenio) {
+        var autorizacao = convenio.getAutorizacao();
+        autorizacao.setStatus(StatusAutorizacao.PENDENTE);
+        convenio.setStatus(StatusAtividade.PENDENTE);
         convenio.setHoraMensal(request.getHoraMensal());
         convenio.setHoraSemanal(request.getHoraSemanal());
         convenio.setValorBruto(request.getValorBruto());
@@ -57,6 +60,9 @@ public class AtividadeFactory {
     }
 
     public static CursoExtensao updateCurso(CursoExtensaoDto request, CursoExtensao curso) {
+        var autorizacao = curso.getAutorizacao();
+        autorizacao.setStatus(StatusAutorizacao.PENDENTE);
+        curso.setStatus(StatusAtividade.PENDENTE);
         curso.setCoordenador(request.getCoordenador());
         curso.setProjeto(request.getNomeCurso());
         curso.setDisciplinaParticipacao(request.getDisciplinas());
@@ -114,6 +120,9 @@ public class AtividadeFactory {
     }
 
     public static Regencia updateRegencia(RegenciaDto request, Regencia regencia) {
+        var autorizacao = regencia.getAutorizacao();
+        autorizacao.setStatus(StatusAutorizacao.PENDENTE);
+        regencia.setStatus(StatusAtividade.PENDENTE);
         regencia.setProjeto(request.getCurso());
         regencia.setInstituicao(request.getInstituicao());
         regencia.setNivel(request.getNivel());
