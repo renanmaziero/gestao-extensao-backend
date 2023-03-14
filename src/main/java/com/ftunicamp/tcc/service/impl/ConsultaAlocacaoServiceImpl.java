@@ -20,4 +20,24 @@ public class ConsultaAlocacaoServiceImpl implements ConsultaAlocacaoService {
         totais[2] = consultaAlocacaoRepository.totalHorasRegencia(docenteId);
         return totais;
     }
+
+    @Override
+    public int[] consultarAlocacoes(Long docenteId, Integer semestre, Integer ano) {
+
+        var alocacoes = new int[]{0, 0, 0};
+
+        try {
+            alocacoes[0] = consultaAlocacaoRepository.consultarAlocacoesConvenio(docenteId, semestre, ano);
+        } catch (Exception e) {}
+
+        try {
+            alocacoes[1] = consultaAlocacaoRepository.consultarAlocacoesCurso(docenteId, semestre, ano);
+        }catch (Exception e) {}
+
+        try {
+            alocacoes[2] = consultaAlocacaoRepository.consultarAlocacoesRegencia(docenteId, semestre, ano);
+        }catch (Exception e) {}
+
+        return alocacoes;
+    }
 }

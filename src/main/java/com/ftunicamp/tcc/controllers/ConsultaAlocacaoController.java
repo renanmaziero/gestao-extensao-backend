@@ -13,8 +13,13 @@ public class ConsultaAlocacaoController {
     @Autowired
     private ConsultaAlocacaoService consultaAlocacaoService;
 
-    @GetMapping("consultar/{id}")
+    @GetMapping("total-horas-aprovadas/{id}")
     public int[] totalHorasAprovadas(@PathVariable("id") Long docenteId){
         return consultaAlocacaoService.totalHorasAprovadas(docenteId);
+    }
+
+    @GetMapping("consultar-alocacoes/{id}/{semestre}/{ano}")
+    public int[] consultarAlocacoes(@PathVariable("id") Long docenteId, @PathVariable("semestre") Integer semestre, @PathVariable("ano") Integer ano){
+        return consultaAlocacaoService.consultarAlocacoes(docenteId, semestre, ano);
     }
 }
