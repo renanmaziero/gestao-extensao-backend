@@ -54,6 +54,9 @@ public abstract class Atividade {
 
     private String revisao;
 
+    @Column(columnDefinition = "boolean default false")
+    private boolean excedeu;
+
     @OneToMany(mappedBy = "atividade", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Alocacao> alocacao;
 

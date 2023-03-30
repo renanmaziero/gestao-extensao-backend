@@ -13,6 +13,8 @@ public class AutorizacaoResponse implements Serializable {
 
     private long id;
 
+    private boolean excedeu;
+
     private String status;
 
     private String dataCriacao;

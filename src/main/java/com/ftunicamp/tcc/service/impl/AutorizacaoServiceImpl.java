@@ -145,6 +145,7 @@ public class AutorizacaoServiceImpl implements AutorizacaoService {
                 .docente(autorizacao.getAtividade().getDocente().getNome())
                 .status(autorizacao.getStatus().getStatus())
                 .id(autorizacao.getId())
+                .excedeu(autorizacao.getAtividade().isExcedeu())
                 .urgente(autorizacao.getAtividade().isUrgente())
                 .tipoAtividade(autorizacao.getAtividade().getTipoAtividade())
                 .atividadeId(autorizacao.getAtividade().getId())

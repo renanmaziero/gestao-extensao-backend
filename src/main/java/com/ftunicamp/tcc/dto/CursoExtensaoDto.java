@@ -36,6 +36,7 @@ public class CursoExtensaoDto {
     private String tipoAtividade;
     private String revisao;
     private List<AlocacaoDto> alocacoes;
+    private boolean excedeu;
     private boolean excedido;
     private boolean urgente;
 }

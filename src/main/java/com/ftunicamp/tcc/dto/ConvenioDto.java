@@ -33,4 +33,5 @@ public class ConvenioDto {
     private List<AlocacaoDto> alocacoes;
     private boolean excedido;
     private boolean urgente;
+    private boolean excedeu;
 }

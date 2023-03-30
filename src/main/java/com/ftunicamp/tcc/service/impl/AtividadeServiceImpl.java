@@ -76,6 +76,7 @@ public class AtividadeServiceImpl implements AtividadeService {
     public AtividadeResponse cadastrarConvenio(ConvenioDto request) {
         var docente = (docenteRepository.findByUser_Username(jwtUtils.getSessao().getUsername()));
         var atividade = AtividadeFactory.criarConvenio(request, docente);
+        atividade.setExcedeu(request.isExcedeu());
         setAlocacao(docente, atividade, request.getAlocacoes());
         var atividadeId = atividadeRepository.save(atividade).getId();
         salvarAutorizacao(atividade);
@@ -89,6 +90,7 @@ public class AtividadeServiceImpl implements AtividadeService {
     public AtividadeResponse cadastrarCursoExtensao(CursoExtensaoDto request) {
         var docente = (docenteRepository.findByUser_Username(jwtUtils.getSessao().getUsername()));
         var atividade = AtividadeFactory.criarCurso(request, docente);
+        atividade.setExcedeu(request.isExcedeu());
         setAlocacao(docente, atividade, request.getAlocacoes());
         var atividadeId = atividadeRepository.save(atividade).getId();
         salvarAutorizacao(atividade);
@@ -104,6 +106,7 @@ public class AtividadeServiceImpl implements AtividadeService {
     public AtividadeResponse cadastrarRegencia(RegenciaRequest request) {
         var docente = (docenteRepository.findByUser_Username(jwtUtils.getSessao().getUsername()));
         var atividade = AtividadeFactory.criarRegencia(request, docente);
+        atividade.setExcedeu(request.isExcedeu());
         setAlocacao(docente, atividade, request.getAlocacoes());
         var atividadeId = atividadeRepository.save(atividade).getId();
         salvarAutorizacao(atividade);
